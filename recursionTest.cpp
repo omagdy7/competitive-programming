@@ -1,3 +1,4 @@
+#include <algorithm>
 #include<bits/stdc++.h>
 
 using namespace std;
@@ -31,17 +32,20 @@ int main() {
   for(int &x : v) {
     cin >> x;
   }
-  if(solve(v, 0, target, v[0], opts)) {
-    for(int i = 0; i < v.size(); i++) {
-      if (i == v.size() - 1) {
-        cout << v[i];
+  sort(v.begin(), v.end());
+  do {
+    if(solve(v, 0, target, v[0], opts)) {
+      for(int i = 0; i < v.size(); i++) {
+        if (i == v.size() - 1) {
+          cout << v[i];
+        }
+        else {
+          cout << v[i] << " " << ans[i] << " ";
+        }
       }
-      else {
-        cout << v[i] << " " << ans[i] << " ";
-      }
+      cout << '\n';
     }
-    cout << '\n';
-  }
+  } while(next_permutation(v.begin(), v.end())); 
 
   return 0;
 }
