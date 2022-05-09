@@ -1,0 +1,7 @@
+tt = int(input())
+n = int(input())
+s = input()
+sp, chars = map(str, input())
+sp = int(sp)
+idx = s[::-1].index(chars)
+print(idx)
