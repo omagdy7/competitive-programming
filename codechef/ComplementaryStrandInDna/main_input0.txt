@@ -1,0 +1,9 @@
+4
+4
+ATCG
+4
+GTCC
+5
+AAAAA
+3
+TAC
