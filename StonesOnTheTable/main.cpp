@@ -9,13 +9,11 @@ int main () {
   cin >> n;
   string s;
   cin >> s;
-  map<char, int> mp;
-  for(auto ch : s) {
-    mp[ch]++;
+  int count = 0;
+  for(int i = 0; i < s.size() - 1;i++) {
+    if(s[i] == s[i + 1]) {
+      count++;
+    }
   }
-  int mx = 0;
-  for(auto p : mp) {
-    mx = max(p.second, mx);
-  }
-  cout << mx - 1 << endl;
+  cout << count << endl;
 }
