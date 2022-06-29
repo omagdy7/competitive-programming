@@ -12,22 +12,14 @@ int main() {
     cin >> n;
     string s;
     cin >> s;
-    int count = 0;
-    stack<char> st;
-    st.push(s[0]);
-    for(int i = 1; i < n; i++) {
-      if(s[i] == '(') {
-        st.push('(');
-      }
-      if(s[i] == ')') {
-        if(st.top() == '(' && !st.empty()){
-          st.pop();
-          count++;
-        }
-      }
+    int cls = count(s.begin(), s.end(), ')');
+    int opn = 0;
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+      cls -= (s[i] == ')');
+      opn += (s[i] == '(');
+      ans = max(ans, min(opn, cls));
     }
-    cout << count << endl;
+    cout << n - ans * 2 << endl;
   }
 }
-
-
