@@ -3,22 +3,29 @@
 
 using namespace std;
 
+#define all(x) (x).begin(), (x).end()
+
 int main () {
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
   int n, m, k;
   cin >> n >> m >> k;
-  vector<int> dsz(n);
-  for (auto &x : dsz) cin >> x;
-  vector<int> asz(m);
-  for (auto &x : asz) cin >> x;
   set<int> taken;
-  sort(dsz.begin(), dsz.end());
-  sort(asz.begin(), asz.end());
-  bool mbigger = m > n;
-  if (mbigger) {
-    for (int i = 0; i < m; i++) {
+  vector<int> v(n);
+  vector<int> a(m);
+  for (auto &x : v) cin >> x;
+  for (auto &x : a) cin >> x;
+  sort(all(a));
+  int ans = 0;
+  for (int i = 0; i < n; i++) {
+    auto upper = *upper_bound(all(a), v[i]);
+    auto lower = *lower_bound(all(a), v[i]);
+    cerr << upper << " " << lower << "\n";
+    if(!taken.count(i) && (upper <= v[i] + k || lower >= v[i] - k)) {
+      taken.insert(i);
+      ans++;
     }
   }
+  cout << ans << '\n';
 
 }
