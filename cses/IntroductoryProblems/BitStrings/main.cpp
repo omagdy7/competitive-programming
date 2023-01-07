@@ -3,8 +3,8 @@
 using namespace std;
 
 int main () {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
   int n;
   int m = 1e9 + 7;
   cin >> n;
