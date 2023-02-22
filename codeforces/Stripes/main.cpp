@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -23,18 +23,16 @@ const int dx[4]{1, 0, -1, 0};
 const int dy[4]{0, 1, 0, -1};
 
 void solve() {
-
-
 }
 
-int main () {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	int tt;
-	cin >> tt;
-	while(tt--) {
+int main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+  int tt;
+  cin >> tt;
+  while (tt--) {
     solve();
-	}
+  }
 }
 
 /* stuff you should look for:
