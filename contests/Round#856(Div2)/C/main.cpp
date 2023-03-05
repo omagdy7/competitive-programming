@@ -73,45 +73,25 @@ void print(T val, TS... vals) {
  */
 
 void solve() {
-  int n, k;
-  cin >> n >> k;
-  vector<pair<int, int>> p(n);
+  int n;
+  cin >> n;
+  vector<int> a(n);
   for (int i = 0; i < n; i++) {
-    cin >> p[i].second;
+    cin >> a[i];
   }
-  for (int i = 0; i < n; i++) {
-    cin >> p[i].first;
-    p[i].first += p[i].second;
-  }
-  sort(p.begin(), p.end());
-  vector<long long> sum(n + 1);
-  vector<int> mx(n + 1);
-  mx[0] = p[0].second;
-  for (int i = 1; i <= n; i++) {
-    sum[i] = p[i - 1].first + sum[i - 1];
-    mx[i] = max(mx[i - 1], p[i].first - p[i].second);
-  }
-  printv(sum);
-  printv(mx);
-  int lo = 0, hi = n + 1;
-  while (hi - lo > 1) {
-    int mid = (lo + hi) >> 1;
-    bool ok = ((sum[mid] - mx[mid - 1]) <= k) && (mid > 1);
-    if (!ok) {
-      for (int i = mid; i < n; i++) {
-        if (sum[mid - 1] + p[i].second <= k) {
-          ok = true;
-          break;
-        }
+  for (int k = 0; k < n; k++) {
+    int lo = 1, hi = k + 2;
+    while (hi - lo > 1) {
+      int mid = (lo + hi) >> 1;
+      if (a[k - mid + 1] >= mid) {
+        lo = mid;
+      } else {
+        hi = mid;
       }
     }
-    if (ok) {
-      lo = mid;
-    } else {
-      hi = mid;
-    }
+    cout << lo << ' ';
   }
-  cout << lo << '\n';
+  cout << '\n';
 }
 
 int main () {

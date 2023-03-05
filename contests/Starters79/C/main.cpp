@@ -71,47 +71,21 @@ void print(T val, TS... vals) {
    * WRITE STUFF DOWN
    * DON'T GET STUCK ON ONE APPROACH
  */
+// 7 / 3
+// 7 + 3 - 1 / 3
 
 void solve() {
-  int n, k;
-  cin >> n >> k;
-  vector<pair<int, int>> p(n);
-  for (int i = 0; i < n; i++) {
-    cin >> p[i].second;
+  // a + b - 1 / b
+  vector<int> pf = {0, 0, 2, 3, 2, 5, 2, 7, 2, 3, 2};
+  int x, y;
+  cin >> x >> y;
+  if (x % 2 == 0) {
+    cout << ((y - x - 1) / 2) + 1 << '\n';
+  } else {
+    cout << ((y - x - pf[x] + 1) / 2) + 1 << '\n';
   }
-  for (int i = 0; i < n; i++) {
-    cin >> p[i].first;
-    p[i].first += p[i].second;
-  }
-  sort(p.begin(), p.end());
-  vector<long long> sum(n + 1);
-  vector<int> mx(n + 1);
-  mx[0] = p[0].second;
-  for (int i = 1; i <= n; i++) {
-    sum[i] = p[i - 1].first + sum[i - 1];
-    mx[i] = max(mx[i - 1], p[i].first - p[i].second);
-  }
-  printv(sum);
-  printv(mx);
-  int lo = 0, hi = n + 1;
-  while (hi - lo > 1) {
-    int mid = (lo + hi) >> 1;
-    bool ok = ((sum[mid] - mx[mid - 1]) <= k) && (mid > 1);
-    if (!ok) {
-      for (int i = mid; i < n; i++) {
-        if (sum[mid - 1] + p[i].second <= k) {
-          ok = true;
-          break;
-        }
-      }
-    }
-    if (ok) {
-      lo = mid;
-    } else {
-      hi = mid;
-    }
-  }
-  cout << lo << '\n';
+
+
 }
 
 int main () {

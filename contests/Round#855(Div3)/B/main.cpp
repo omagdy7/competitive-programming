@@ -74,44 +74,30 @@ void print(T val, TS... vals) {
 
 void solve() {
   int n, k;
+  string s;
   cin >> n >> k;
-  vector<pair<int, int>> p(n);
-  for (int i = 0; i < n; i++) {
-    cin >> p[i].second;
+  cin >> s;
+  map<char, int> fq;
+  for (auto ch : s) {
+    fq[ch]++;
   }
-  for (int i = 0; i < n; i++) {
-    cin >> p[i].first;
-    p[i].first += p[i].second;
+  int ans = 0;
+  for (int i = 0; i < 26; i++) {
+    ans += min(fq['a' + i], fq['A' + i]);
   }
-  sort(p.begin(), p.end());
-  vector<long long> sum(n + 1);
-  vector<int> mx(n + 1);
-  mx[0] = p[0].second;
-  for (int i = 1; i <= n; i++) {
-    sum[i] = p[i - 1].first + sum[i - 1];
-    mx[i] = max(mx[i - 1], p[i].first - p[i].second);
-  }
-  printv(sum);
-  printv(mx);
-  int lo = 0, hi = n + 1;
-  while (hi - lo > 1) {
-    int mid = (lo + hi) >> 1;
-    bool ok = ((sum[mid] - mx[mid - 1]) <= k) && (mid > 1);
-    if (!ok) {
-      for (int i = mid; i < n; i++) {
-        if (sum[mid - 1] + p[i].second <= k) {
-          ok = true;
-          break;
-        }
-      }
-    }
-    if (ok) {
-      lo = mid;
+  for (int i = 0; i < 26; i++) {
+    int mx = max(fq['a' + i], fq['A' + i]);
+    int mn = min(fq['a' + i], fq['A' + i]);
+    int xn = (mx - mn) / 2;
+    if (k > 0) {
+      ans += (mx - mn) / 2;
+      k -= (mx - mn) / 2;;
     } else {
-      hi = mid;
+      break;
     }
   }
-  cout << lo << '\n';
+  cout << ans + (k < 0 ? k : 0) << '\n';
+
 }
 
 int main () {

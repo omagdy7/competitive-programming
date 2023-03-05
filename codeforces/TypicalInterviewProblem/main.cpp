@@ -71,47 +71,22 @@ void print(T val, TS... vals) {
    * WRITE STUFF DOWN
    * DON'T GET STUCK ON ONE APPROACH
  */
+// 3 5 6 9 10 12 15 18 20 21 24 25 27 30
+// F B F F B  F  FB F  B  F  F  B  F  FB
+// FBFFBFFB FBFFBFFB
 
 void solve() {
-  int n, k;
-  cin >> n >> k;
-  vector<pair<int, int>> p(n);
-  for (int i = 0; i < n; i++) {
-    cin >> p[i].second;
+  int n;
+  string s;
+  cin >> n;
+  cin >> s;
+  string fb = "FBFFBFFBFBFFBFFBFBFFBFFBFBFFBFFB";
+  if (regex_match(fb, regex(".*" + s + ".*"))) {
+    cout << "YES" << '\n';
+  } else {
+    cout << "NO" << '\n';
   }
-  for (int i = 0; i < n; i++) {
-    cin >> p[i].first;
-    p[i].first += p[i].second;
-  }
-  sort(p.begin(), p.end());
-  vector<long long> sum(n + 1);
-  vector<int> mx(n + 1);
-  mx[0] = p[0].second;
-  for (int i = 1; i <= n; i++) {
-    sum[i] = p[i - 1].first + sum[i - 1];
-    mx[i] = max(mx[i - 1], p[i].first - p[i].second);
-  }
-  printv(sum);
-  printv(mx);
-  int lo = 0, hi = n + 1;
-  while (hi - lo > 1) {
-    int mid = (lo + hi) >> 1;
-    bool ok = ((sum[mid] - mx[mid - 1]) <= k) && (mid > 1);
-    if (!ok) {
-      for (int i = mid; i < n; i++) {
-        if (sum[mid - 1] + p[i].second <= k) {
-          ok = true;
-          break;
-        }
-      }
-    }
-    if (ok) {
-      lo = mid;
-    } else {
-      hi = mid;
-    }
-  }
-  cout << lo << '\n';
+
 }
 
 int main () {
