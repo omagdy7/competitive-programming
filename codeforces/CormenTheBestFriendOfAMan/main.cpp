@@ -22,10 +22,27 @@ const db PI = acos((db)-1);
 const int dx[4]{1, 0, -1, 0};
 const int dy[4]{0, 1, 0, -1};
 
+// v[i + 1] + v[i] = k
+
 void solve() {
   int n, k;
   cin >> n >> k;
   vi v(n);
+  for (auto &x : v) cin >> x;
+  vi ans(n);
+  int cnt = 0;
+  for (int i = 0; i < n - 1; i++) {
+    if (v[i] + v[i + 1] < k)  {
+      int aw = k - v[i];
+      cnt += aw - v[i + 1];
+      v[i + 1] = aw;
+    }
+  }
+  cout << cnt << '\n';
+  for (auto x : v) {
+    cout << x << ' ';
+  }
+  cout << '\n';
 
 }
 
