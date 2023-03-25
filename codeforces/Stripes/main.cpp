@@ -23,6 +23,18 @@ const int dx[4]{1, 0, -1, 0};
 const int dy[4]{0, 1, 0, -1};
 
 void solve() {
+  vector<string> v(8);
+  bool lastRed = false;
+  for (auto s : v) {
+    cin >> s;
+    int reds = count(all(s), 'R');
+    if (reds == 8) {
+      lastRed = true;
+    }
+  }
+  cout << (lastRed ? 'R' : 'B') << '\n';
+
+
 }
 
 int main() {
