@@ -1,5 +1,5 @@
 #include <algorithm>
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -25,21 +25,21 @@ const int dy[4]{0, 1, 0, -1};
 
 void solve() {
   vi v(3);
-  for (auto &x : v) cin >> x;
-  if (v[0] + v[1] == v[2] || v[1] + v[2] == v[0] || v[0] + v[2] == v[1])  {
+  for (auto &x : v)
+    cin >> x;
+  if (v[0] + v[1] == v[2] || v[1] + v[2] == v[0] || v[0] + v[2] == v[1]) {
     cout << "YES" << '\n';
   } else {
     cout << "NO" << '\n';
   }
-
 }
 
-int main () {
+int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
   int tt;
   cin >> tt;
-  while(tt--) {
+  while (tt--) {
     solve();
   }
 }
