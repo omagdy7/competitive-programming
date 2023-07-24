@@ -1,13 +1,13 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-int main () {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	int tt;
-	cin >> tt;
-	while(tt--){
+int main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+  int tt;
+  cin >> tt;
+  while (tt--) {
     int n;
     cin >> n;
     long long ans = 0;
@@ -17,5 +17,5 @@ int main () {
       ans += x;
     }
     cout << abs(ans) << '\n';
-	}
+  }
 }

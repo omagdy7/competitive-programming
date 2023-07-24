@@ -1,4 +1,5 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#include <vector>
 
 using namespace std;
 
@@ -9,9 +10,9 @@ typedef vector<int> vi;
 
 #define INF 1000000000
 
-int main () {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
+int main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
   int mx = 0;
   int n;
   cin >> n;
@@ -23,6 +24,6 @@ int main () {
     int x, y;
     cin >> x >> y;
     v[i + 1] = v[i] + (y - x);
-	}
+  }
   cout << *max_element(v.begin(), v.end()) << '\n';
 }
