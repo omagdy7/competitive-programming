@@ -18,7 +18,7 @@ using db = long double;
 #define make_unique(x)                                                         \
   sort(all((x)));                                                              \
   (x).resize(unique(all((x))) - (x).begin())
-#define ceil(a, b) ((a) + (b) - 1) / (b))
+#define ceil(a, b) ((a) + (b)-1) / (b)
 
 const int MOD = (int)1e9 + 7;
 const db PI = acos((db)-1);
@@ -100,11 +100,11 @@ ostream &operator<<(ostream &os, const unordered_set<T> &s) {
   return os;
 }
 
-void print() { cerr << "\n"; }
+void dbg() { cerr << "\n"; }
 
-template <typename T, typename... TS> void print(T val, TS... vals) {
+template <typename T, typename... TS> void dbg(T val, TS... vals) {
   cerr << val << " ";
-  print(vals...);
+  dbg(vals...);
 }
 
 /* stuff you should look for:
@@ -116,20 +116,25 @@ template <typename T, typename... TS> void print(T val, TS... vals) {
    * DON'T GET STUCK ON ONE APPROACH
  */
 
-// 2 * x + x = 10
-// x(m + 1) = 10
-
 void solve() {
-  ll a, b, n, m;
-  cin >> a >> b >> n >> m;
-  ll ans = 0;
-  ll rem = n;
-  if (a * m <= b * (m + 1)) {
-    ans += a * m * (n / (m + 1));
-    rem = n % (m + 1);
+  int n;
+  cin >> n;
+  vll v(n);
+  ll sum = 0;
+  for (int i = 0; i < n; i++) {
+    cin >> v[i];
+    sum += abs(v[i]);
   }
-  ans += rem * min(a, b);
-  cout << ans << '\n';
+  int ops = 0;
+  for (int i = 0; i < n; i++) {
+    if (v[i] < 0) {
+      ops++;
+      while (i < n && v[i] <= 0) {
+        i++;
+      }
+    }
+  }
+  cout << sum << ' ' << ops << '\n';
 }
 
 int main() {

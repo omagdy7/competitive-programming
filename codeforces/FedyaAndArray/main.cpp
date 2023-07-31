@@ -100,11 +100,11 @@ ostream &operator<<(ostream &os, const unordered_set<T> &s) {
   return os;
 }
 
-void print() { cerr << "\n"; }
+void dbg() { cerr << "\n"; }
 
-template <typename T, typename... TS> void print(T val, TS... vals) {
+template <typename T, typename... TS> void dbg(T val, TS... vals) {
   cerr << val << " ";
-  print(vals...);
+  dbg(vals...);
 }
 
 /* stuff you should look for:
@@ -116,20 +116,20 @@ template <typename T, typename... TS> void print(T val, TS... vals) {
    * DON'T GET STUCK ON ONE APPROACH
  */
 
-// 2 * x + x = 10
-// x(m + 1) = 10
-
+// 0 1 0 1 0 1 0 -1 0 -1
+// 0 1 0 1 0 1 0 1 0 -1 0 -1 0 -1 0 -1
+// -2 -1 0 1 2 3 2 1 0 -1
 void solve() {
-  ll a, b, n, m;
-  cin >> a >> b >> n >> m;
-  ll ans = 0;
-  ll rem = n;
-  if (a * m <= b * (m + 1)) {
-    ans += a * m * (n / (m + 1));
-    rem = n % (m + 1);
+  int x, y;
+  cin >> x >> y;
+  int n = 2 * (x - y);
+  cout << n << '\n';
+  for (int i = y; i <= x; i++) {
+    cout << i << ' ';
   }
-  ans += rem * min(a, b);
-  cout << ans << '\n';
+  for (int i = x - 1; i > y; i--) {
+    cout << i << " \n"[i == y - 1];
+  }
 }
 
 int main() {
