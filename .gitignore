@@ -1,4 +1,5 @@
 binaries
+main
 .ccls-cache
 *.o
 Cypher
