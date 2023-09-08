@@ -120,32 +120,40 @@ void solve() {
   int n;
   cin >> n;
   vi v(n);
+  vi pfx(n + 1);
+  pfx[0] = 0;
   for (auto &x : v) {
     cin >> x;
+  }
+  for (int i = 0; i < n; i++) {
+    pfx[i + 1] = pfx[i] ^ v[i];
   }
   string s;
   cin >> s;
   int q;
   cin >> q;
+  int x1 = 0, x2 = 0;
+  for (int i = 0; i < n; i++) {
+    if (s[i] == '0') {
+      x1 ^= v[i];
+    } else {
+      x2 ^= v[i];
+    }
+  }
   for (int i = 0; i < q; i++) {
     int op, x;
     cin >> op >> x;
     if (op == 1) {
-      x--;
       int y;
       cin >> y;
-      y--;
-      for (int j = x; j <= y; j++) {
-        s[j] = (s[j] == '0') ? '1' : '0';
-      }
+      x1 ^= pfx[y] ^ pfx[x - 1];
+      x2 ^= pfx[y] ^ pfx[x - 1];
     } else {
-      int ans = 0;
-      for (int j = 0; j < n; j++) {
-        if (s[j] == x + '0') {
-          ans ^= v[j];
-        }
+      if (x == 0) {
+        cout << x1 << ' ';
+      } else {
+        cout << x2 << ' ';
       }
-      cout << ans << ' ';
     }
   }
   cout << '\n';

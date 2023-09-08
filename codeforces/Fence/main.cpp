@@ -1,5 +1,5 @@
+#include <algorithm>
 #include <bits/stdc++.h>
-#include <climits>
 using namespace std;
 
 using ll = long long;
@@ -117,24 +117,34 @@ template <typename T, typename... TS> void dbg(T val, TS... vals) {
    * DON'T GET STUCK ON ONE APPROACH
  */
 
+// 1 2 3 4 5
+// 3 2 6 5 4
+
 void solve() {
-  int n;
-  cin >> n;
-  int mn = INT_MAX;
-  for (int i = 0; i < n; i++) {
-    int s, d;
-    cin >> s >> d;
-    mn = min(mn , s + (d - 1) / 2);
+  int n, k;
+  cin >> n >> k;
+  vi v(n);
+  for (auto &x : v) {
+    cin >> x;
   }
-  cout << mn << endl;
+  ll ans = 0;
+  for (int i = 0; i < k; i++) {
+    ans += v[i];
+  }
+  int idx = 1;
+  ll mn = ans;
+  for (int i = 0; i < n - k; i++) {
+    if (mn > ans + v[i + k] - v[i]) {
+      idx = i + 2;
+    }
+    ans += v[i + k] - v[i];
+    mn = min(mn, ans);
+  }
+  cout << idx << '\n';
 }
 
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
-  int tt;
-  cin >> tt;
-  while (tt--) {
-    solve();
-  }
+  solve();
 }
