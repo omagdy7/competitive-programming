@@ -120,9 +120,9 @@ void solve() {
   int n;
   cin >> n;
   vi v(n);
-  v[0] = 3;
+  v[0] = 5;
   for (int i = 1; i < n; i++) {
-    v[i] = v[i - 1] + 7;
+    v[i] = v[i - 1] + 1;
   }
   for (int i = 0; i < n; i++) {
     cout << v[i] << ' ';
