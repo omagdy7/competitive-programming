@@ -1,5 +1,8 @@
-![.cpp files](https://img.shields.io/github/languages/count/omagdy7/competitive-programming.svg?label=.cpp%20files&logo=github&style=flat-square)
+![Static Badge](https://img.shields.io/badge/Codechef_problems-0-brightgreen?logo=codechef&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Codeforces_problems-0-brightgreen?logo=codeforces&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Hackerrank_problems-0-brightgreen?logo=Hackerrank&logoColor=white)
+![Static Badge](https://img.shields.io/badge/AtCoder_problems-0-brightgreen?logoColor=white)
 
-# competitive-programming
+# Competitive Programming
 Here I upload every problem I solve from websites like(Hackerrank, Codeforces, etc..)
 

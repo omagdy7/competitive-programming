@@ -1,0 +1,64 @@
+name: Update badges on commit
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  get_number_of_problem:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get how many codeforces problems
+        id: codeforces
+        run: |
+          CF_PROBLEMS=$(find ./codeforces -maxdepth 1 | wc -l)
+          echo "Codeforces problems count: $CF_PROBLEMS"
+          echo "cf-problems=$CF_PROBLEMS" >> $GITHUB_OUTPUT
+
+      - name: Get how many codechef problems
+        id: codechef
+        run: |
+          CC_PROBLEMS=$(find ./codechef -maxdepth 1 | wc -l)
+          echo "Codechef problems count: $CC_PROBLEMS"
+          echo "cc-problems=$CC_PROBLEMS" >> $GITHUB_OUTPUT
+
+      - name: Get how many Hackerrank problems
+        id: Hackerrank
+        run: |
+          HR_PROBLEMS=$(find ./Hackerrank -maxdepth 1 | wc -l)
+          echo "Hackerrank problems count: $HR_PROBLEMS"
+          echo "hr-problems=$HR_PROBLEMS" >> $GITHUB_OUTPUT
+
+      - name: Get how many AtCoder problems
+        id: AtCoder
+        run: |
+          AC_PROBLEMS=$(find ./AtCoder -maxdepth 1 | wc -l)
+          echo "AtCoder problems count: $AC_PROBLEMS"
+          echo "ac-problems=$AC_PROBLEMS" >> $GITHUB_OUTPUT
+      - name: Update badges
+        run: |
+          sed -i 's/Codeforces_problems-.*-/Codeforces_problems-${{ steps.codeforces.outputs.cf-problems }}-/' README.md
+          sed -i 's/Codechef_problems-.*-/Codechef_problems-${{ steps.codechef.outputs.cc-problems }}-/' README.md
+          sed -i 's/Hackerrank_problems-.*-/Hackerrank_problems-${{ steps.Hackerrank.outputs.hr-problems }}-/' README.md
+          sed -i 's/AtCoder_problems-.*-/AtCoder_problems-${{ steps.AtCoder.outputs.ac-problems }}-/' README.md
+      - name: Check if there is anything to commit
+        id: changed
+        run: |
+          NEW_CHANGES=$(git status | grep -q "modified" && echo 2 || true)
+          echo "New Changes: $NEW_CHANGES"
+          echo "new-change=$NEW_CHANGES" >> $GITHUB_OUTPUT
+          
+
+      - name: Commit and Push Changes
+        if: ${{ steps.changed.outputs.new-change == 2}}
+        run: |
+          git config --local user.email "omagdy7@users.noreply.github.com"
+          git config --local user.name "omagdy"
+          git add README.md
+          git commit -m "Update badges [skip ci]"
+          git push
