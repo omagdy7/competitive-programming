@@ -1,6 +1,5 @@
-#include <algorithm>
 #include <bits/stdc++.h>
-#include <numeric>
+#include <climits>
 
 using namespace std;
 
@@ -44,23 +43,61 @@ const int dy[4]{0, 1, 0, -1};
  */
 
 void solve() {
-  ll n;
-  cin >> n;
-  vll a(n), b(n);
+  int n, m, k;
+  cin >> n >> m >> k;
+  vll a(n), b(m);
+  ll min_a = INT_MAX;
+  ll min_b = INT_MAX;
+  ll max_a = 0;
+  ll max_b = 0;
+  ll sum = 0;
   for (auto &x : a) {
     cin >> x;
+    sum += x;
+    min_a = min(min_a, x);
+    max_a = max(max_a, x);
   }
   for (auto &x : b) {
     cin >> x;
+    min_b = min(min_b, x);
+    max_b = max(max_b, x);
   }
-
-  ll sum_a = accumulate(all(a), 0LL);
-  ll sum_b = accumulate(all(b), 0LL);
-  ll min_a = *min_element(all(a));
-  ll min_b = *min_element(all(b));
-  dbg(sum_a, sum_b);
-
-  cout << min(min_a * n + sum_b, min_b * n + sum_a) << '\n';
+  ll mx = max(max_a, max_b);
+  ll mn = min(min_a, min_b);
+  ll tmp = sum + (max_b - min_a);
+  if (mx == max_a && mn == min_a) {
+    if (k % 2 == 1) {
+      cout << tmp << '\n';
+    } else {
+      cout << tmp + (mn - mx) << '\n';
+    }
+  } else if (mx == max_b && mn == min_b) {
+    if (k % 2 == 1) {
+      cout << tmp << '\n';
+    } else {
+      cout << tmp + (mn - mx) << '\n';
+    }
+  } else if (mx == max_a && mn == min_b) {
+    if (k % 2 == 1) {
+      if (max_b <= min_a) {
+        cout << sum << '\n';
+      } else {
+        cout << tmp << '\n';
+      }
+    } else {
+      if (max_b <= min_a) {
+        cout << sum + (mn - mx) << '\n';
+      } else {
+        cout << tmp + (mn - mx) << '\n';
+      }
+    }
+  } else {
+    if (k % 2 == 1) {
+      cout << tmp << '\n';
+    } else {
+      cout << sum << '\n';
+    }
+  }
 }
 
 int main() {

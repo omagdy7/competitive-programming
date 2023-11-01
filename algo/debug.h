@@ -1,30 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-using ll = long long;
-using pii = pair<int, int>;
-using vpii = vector<pii>;
-using vi = vector<int>;
-using vll = vector<long long>;
-using mpii = map<int, int>;
-using mpll = map<ll, ll>;
-using db = long double;
-
-#define pb push_back
-#define all(x) (x).begin(), (x).end()
-#define rall(x) (x).rbegin(), (x).rend()
-#define lb lower_bound
-#define ub upper_bound
-#define make_unique(x)                                                         \
-  sort(all((x)));                                                              \
-  (x).resize(unique(all((x))) - (x).begin())
-#define ceil(a, b) ((a) + (b)-1) / (b)
-
-const int mod = (int)1e9 + 7;
-const db pi = acos((db)-1);
-const int dx[4]{1, 0, -1, 0};
-const int dy[4]{0, 1, 0, -1};
-
 template <typename k, typename v>
 ostream &operator<<(ostream &os, const pair<k, v> &p);
 template <typename t> ostream &operator<<(ostream &os, const vector<t> &vec);
@@ -113,11 +89,18 @@ ostream &operator<<(ostream &os, const unordered_set<t> &s) {
   return os;
 }
 
-void debug_out() { cerr << endl; }
+template <typename... Ts>
+void debug_out(const std::string_view names, const Ts &...ts) {
+  size_t start = 0;
 
-template <typename head, typename... tail> void debug_out(head h, tail... t) {
-  cerr << h << '\n';
-  debug_out(t...);
+  const auto print_single = [&names](size_t start, const auto &value) {
+    const auto end = names.find(',', start + 1);
+    std::cerr << names.substr(start, end - start) << " = " << value << '\n';
+
+    return end + 2;
+  };
+
+  ((start = print_single(start, ts)), ...);
 }
 
-#define dbg(...) cerr << "(" << #__VA_ARGS__ << "):\n", debug_out(__VA_ARGS__)
+#define dbg(...) debug_out(#__VA_ARGS__, __VA_ARGS__)

@@ -1,6 +1,4 @@
-#include <algorithm>
 #include <bits/stdc++.h>
-#include <numeric>
 
 using namespace std;
 
@@ -44,23 +42,19 @@ const int dy[4]{0, 1, 0, -1};
  */
 
 void solve() {
-  ll n;
-  cin >> n;
-  vll a(n), b(n);
-  for (auto &x : a) {
-    cin >> x;
+  int a, b, n;
+  cin >> a >> b >> n;
+  vi v(n);
+  for (int i = 0; i < n; i++) {
+    cin >> v[i];
   }
-  for (auto &x : b) {
-    cin >> x;
+  int c = b;
+  ll ans = b - 1;
+  for (int i = 0; i < n; i++) {
+    c = min(a, 1 + v[i]);
+    ans += c - 1;
   }
-
-  ll sum_a = accumulate(all(a), 0LL);
-  ll sum_b = accumulate(all(b), 0LL);
-  ll min_a = *min_element(all(a));
-  ll min_b = *min_element(all(b));
-  dbg(sum_a, sum_b);
-
-  cout << min(min_a * n + sum_b, min_b * n + sum_a) << '\n';
+  cout << ans + 1 << '\n';
 }
 
 int main() {
