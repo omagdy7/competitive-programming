@@ -33,7 +33,7 @@ jobs:
       - name: Get how many Hackerrank problems
         id: Hackerrank
         run: |
-          HR_PROBLEMS=$(find ./Hackerrank -maxdepth 1 | wc -l)
+          HR_PROBLEMS=$(find ./HackerRank -maxdepth 1 | wc -l)
           echo "Hackerrank problems count: $HR_PROBLEMS"
           echo "hr-problems=$HR_PROBLEMS" >> $GITHUB_OUTPUT
 
