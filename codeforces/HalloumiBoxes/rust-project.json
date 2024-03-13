@@ -1,0 +1,11 @@
+{
+  "sysroot": "/home/omar/.rustup/toolchains/stable-x86_64-unknown-linux-gnu",
+  "sysroot_src": "/home/omar/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/",
+  "crates": [
+    {
+      "root_module": "main.rs",
+      "edition": "2021",
+      "deps": []
+    }
+  ]
+}
