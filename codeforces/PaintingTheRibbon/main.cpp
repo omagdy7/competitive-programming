@@ -41,7 +41,10 @@ const int dy[4]{0, 1, 0, -1};
    * DON'T GET STUCK ON ONE APPROACH
  */
 
-void solve() { <()> }
+void solve() {
+  int n, m, k;
+  cin >> n >> m >> k;
+}
 
 int main() {
   ios_base::sync_with_stdio(false);

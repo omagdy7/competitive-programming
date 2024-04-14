@@ -41,7 +41,27 @@ const int dy[4]{0, 1, 0, -1};
    * DON'T GET STUCK ON ONE APPROACH
  */
 
-void solve() { <()> }
+void solve() {
+  int k, q;
+  cin >> k >> q;
+  vi v(k);
+  vi qs(q);
+  int mn = INT_MAX;
+  for (auto &x : v) {
+    cin >> x;
+    mn = min(mn, x);
+  }
+  for (auto &x : qs) {
+    cin >> x;
+  }
+  for (int i = 0; i < q; i++) {
+    if (qs[i] < mn) {
+      cout << qs[i] << " \n"[i == q - 1];
+    } else {
+      cout << mn - 1 << " \n"[i == q - 1];
+    }
+  }
+}
 
 int main() {
   ios_base::sync_with_stdio(false);

@@ -19,7 +19,7 @@ using db = long double;
 #define make_unique(x)                                                         \
   sort(all((x)));                                                              \
   (x).resize(unique(all((x))) - (x).begin())
-/* // #define ceil(a, b) ((a) + (b)-1) / (b) */
+#define ceil(a, b) ((a) + (b)-1) / (b)
 
 const int mod = (int)1e9 + 7;
 const db pi = acos((db)-1);
@@ -42,42 +42,19 @@ const int dy[4]{0, 1, 0, -1};
  */
 
 void solve() {
-  int n, m, k;
-  cin >> n >> m >> k;
+  int n;
+  cin >> n;
+  vi v(n);
   mpii fq;
-  vi a(n);
-  vi b(m);
-  int mx = 0;
-  for (auto &x : a) {
-    cin >> x;
-    mx = max(mx, x);
-  }
-  for (auto &x : b) {
+  int ans = 0;
+  for (auto &x : v) {
     cin >> x;
     fq[x]++;
-  }
-  vi v(mx + 1);
-  int ans = 0;
-  int cnt = 0;
-  for (int i = 0; i < m; i++) {
-    v[a[i]]++;
-    if (v[a[i]] && v[a[i]] <= fq[a[i]]) {
+    if (fq[x] == 2) {
       ans++;
     }
   }
-  cnt += ans >= k;
-  for (int i = 1; i < n - m + 1; i++) {
-    v[a[i - 1]]--;
-    if (v[a[i - 1]] < fq[a[i - 1]]) {
-      ans--;
-    }
-    v[a[i + m - 1]]++;
-    if (v[a[i + m - 1]] && v[a[i + m - 1]] <= fq[a[i + m - 1]]) {
-      ans++;
-    }
-    cnt += ans >= k;
-  }
-  cout << cnt << '\n';
+  cout << ans << '\n';
 }
 
 int main() {
