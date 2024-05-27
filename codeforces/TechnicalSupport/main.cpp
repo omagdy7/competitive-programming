@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -38,14 +38,14 @@ void solve() {
   cout << (cnt == 0 ? "Yes" : "No") << '\n';
 }
 
-int main () {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	int tt;
-	cin >> tt;
-	while(tt--) {
+int main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+  int tt;
+  cin >> tt;
+  while (tt--) {
     solve();
-	}
+  }
 }
 
 /* stuff you should look for:
